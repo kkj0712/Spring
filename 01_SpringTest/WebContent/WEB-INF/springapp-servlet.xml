@@ -32,4 +32,29 @@
 <bean name="/personInsert.sp" class="com.person.controller.PersonInsert">
 	<property name="dao" ref="dao"></property>
 </bean>
+
+<!-- 전체보기 -->
+<bean name="/personList.sp" class="com.person.controller.PersonList">
+	<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 상세보기 -->
+<bean name="/personView.sp" class="com.person.controller.PersonView">
+	<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 삭제하기 -->
+<bean name="/personDelete.sp" class="com.person.controller.PersonDelete">
+	<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 수정 폼으로 가기 -->
+<bean name="/updateForm.sp" class="com.person.controller.UpdateForm">
+	<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 수정하기 -->
+<bean name="/personUpdate.sp" class="com.person.controller.PersonUpdate">
+	<property name="dao" ref="dao"></property>
+</bean>
 </beans>

@@ -9,7 +9,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import com.person.model.PersonDAOImpl;
 import com.person.model.PersonDTO;
 
-public class PersonInsert extends AbstractController{
+public class UpdateForm extends AbstractController {
+
 	private PersonDAOImpl dao;
 	
 	//setter
@@ -19,15 +20,12 @@ public class PersonInsert extends AbstractController{
 	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		
-		PersonDTO person=new PersonDTO();
-		person.setGender(req.getParameter("gender"));
-		person.setId(req.getParameter("id"));
-		person.setJob(req.getParameter("job"));
-		person.setName(req.getParameter("name"));
-		person.setPassword(req.getParameter("password"));
-		dao.personInsert(person);
-		return new ModelAndView("redirect:personList.sp");
+		String id=req.getParameter("id");
+		PersonDTO person=dao.findById(id);
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("user",person);
+		mv.setViewName("WEB-INF/jsp/updateForm.jsp");
+		return mv;
 	}
 
 }

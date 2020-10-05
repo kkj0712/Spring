@@ -8,7 +8,7 @@ public interface PersonDAO {
 	//전체보기
 	public List<PersonDTO> findAll();
 	//수정하기
-	public void personUpdate(String id);
+	public void personUpdate(PersonDTO person);
 	//삭제하기
 	public void personDelete(String id);
 	//상세보기

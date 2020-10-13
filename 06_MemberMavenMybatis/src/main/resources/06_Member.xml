@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.member.06_Member">
+ 
+ <!-- insert -->
+ <insert id="insertData" parameterType="com.member.model.Member">
+ 	insert into springmember (id,pass,name,addr,memo,reg_date)
+ 	values(#{id},#{pass},#{name},#{addr},#{memo},sysdate)
+ </insert>
+ 
+ <!-- list -->
+ <select id="listData" parameterType="java.lang.String" resultType="com.member.model.Member">
+ 	select * from springmember
+ 	<where>
+ 		<if test="word!=null and field=='name'">
+ 			name like '%${word}$%'
+ 		</if>
+ 		<if test="word!=null and field=='id'">
+ 			id like '%'||#{word}||'%'
+ 		</if>
+ 	</where>
+ </select>
+ 	
+ <!-- view -->
+ <select id="viewData" parameterType="java.lang.String" resultType="om.member.model.Member">
+ 	select * from springmember where id=#{id}
+ </select>
+ 
+ <!-- update -->
+ <update id="updateData" parameterType="com.member.model.Member">
+ 	update springmember set pass=#{pass}, name=#{name}, addr=#{addr}, memo=#{memo} where id=#{id} 
+ </update>
+ 
+ <!-- delete -->
+ <delete id="deleteData" parameterType="java.lang.String">
+ 	delete from springmember where id=#{id}
+ </delete>
+ </mapper> 

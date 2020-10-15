@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.member.model.Member;
 import com.member.model.MemberService;
@@ -83,5 +84,11 @@ public class HomeController {
 	public String delete(String id) {
 		service.delete(id);
 		return "redirect:list";
+	}
+	
+	@GetMapping("sample1")
+	@ResponseBody
+	public String sample() {
+		return "success";
 	}
 }

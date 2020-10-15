@@ -1,5 +1,6 @@
 package com.member.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	//전체보기
-	public List<Member> list(String field, String word) {
-		return dao.dao_list("listData", field, word);
+	public List<Member> list(HashMap<String, String> hm) {
+		return dao.dao_list("listData", hm);
 	}
 
 	//상세보기

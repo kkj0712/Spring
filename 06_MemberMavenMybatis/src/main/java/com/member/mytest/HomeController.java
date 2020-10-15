@@ -2,6 +2,7 @@ package com.member.mytest;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.member.model.Member;
 import com.member.model.MemberService;
@@ -51,10 +53,13 @@ public class HomeController {
 	
 	//전체보기
 	@RequestMapping("list")
-	public String list(Model model, String field, String word) {
-		field=field==null? "":field;
-		word=word==null? "":word;
-		List<Member> mlist=service.list(field, word);
+	public String list(Model model, 
+			@RequestParam(value="field", required = false)String field, 
+			@RequestParam(value="word", required = false)String word) {
+		HashMap<String, String> hm=new HashMap<String, String>();
+		hm.put("field", field);
+		hm.put("word", word);
+		List<Member> mlist=service.list(hm);
 		model.addAttribute("memberlist", mlist);
 		return "list";
 	}

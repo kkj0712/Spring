@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="list">전체보기</a>
 <h2>회원가입</h2>
 <form action="insert" method="post">
 <table>

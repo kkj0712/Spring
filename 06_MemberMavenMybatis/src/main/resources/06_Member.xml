@@ -12,20 +12,20 @@
  </insert>
  
  <!-- list -->
- <select id="listData" parameterType="java.lang.String" resultType="com.member.model.Member">
+ <select id="listData" parameterType="java.util.HashMap" resultType="com.member.model.Member">
  	select * from springmember
  	<where>
- 		<if test="word!=null and field=='name'">
- 			name like '%${word}$%'
+ 		<if test='word!=null and field=="name"'>
+ 			name like '%'||#{word}||'%'
  		</if>
- 		<if test="word!=null and field=='id'">
+ 		<if test='word!=null and field=="id"'>
  			id like '%'||#{word}||'%'
  		</if>
  	</where>
  </select>
  	
  <!-- view -->
- <select id="viewData" parameterType="java.lang.String" resultType="om.member.model.Member">
+ <select id="viewData" parameterType="java.lang.String" resultType="com.member.model.Member">
  	select * from springmember where id=#{id}
  </select>
  

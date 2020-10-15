@@ -1,5 +1,6 @@
 package com.member.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.ExecutorType;
@@ -21,9 +22,9 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	//전체보기
-	public List<Member> dao_list(String sql_Id, String field, String word) {
+	public List<Member> dao_list(String sql_Id, HashMap<String, String> hm) {
 		SqlSession sess=sqlMapper.openSession(ExecutorType.REUSE);
-		List<Member> memberlist=sess.selectList(sql_Id);
+		List<Member> memberlist=sess.selectList(sql_Id, hm);
 		return memberlist;
 	}
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.myguest.mapper.GuestBookMapper">
+ 
+ <!-- 검색 -->
+ <sql id="search">
+ 	<where>
+ 		<if test='word!=null and field=="name"'>
+ 			name like '%${word}%'
+ 		</if>
+		<if test='word!=null and field=="content"'>
+ 			content like '%${word}%'
+ 		</if>
+ 	</where>
+ </sql>
+ 
+ <!-- 전체보기 -->
+ <select id="list" resultType="com.myguest.model.GuestBookDTO" parameterType="HashMap">
+ 	select * from
+      (select aa.*, rownum rn from
+		(select * from guestbook <include refid="search"/>
+		order by num desc)aa
+		where rownum &lt;=#{endRow})
+		where rn>=#{startRow}
+ </select>
+ 
+ <!-- 개수 -->
+ <select id="count" resultType="int">
+ 	select count(*) from guestbook <include refid="search"/>
+ </select>
+ 
+ 
+ </mapper>

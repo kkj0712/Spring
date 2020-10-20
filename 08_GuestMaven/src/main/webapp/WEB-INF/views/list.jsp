@@ -12,29 +12,31 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>번호</th>
 			<th>seq</th>
 			<th>글쓴이</th>
 			<th>평가</th>
 			<th>작성일</th>
-			<c:if test="${sessionScope.login!=null}">
 			<th>삭제</th>
-			</c:if>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${guestlist}" var="guest" varStatus="st">
 		<tr>
 			<td>${guest.num}</td>
-			<td>${guest.name}</td>
+			<td><a href="javascript:fview(${guest.num})">${guest.name}</a></td>
 			<td>${guest.grade}</td>
 			<td>${guest.created}</td>
-			<c:if test="${sessionScope.login!=null}">
-				<td>삭제</td>
-			</c:if>
+				<td>
+					<a href="javascript:fdelete(${guest.num},'${guest.name}')">삭제</a>
+				</td>
 		</tr>
 		</c:forEach>
 	</tbody>
 </table>
+<!-- 페이징 처리 기능 추가 -->
+<div align="center">
+${pageHtml}
+</div>
+
 </body>
 </html>

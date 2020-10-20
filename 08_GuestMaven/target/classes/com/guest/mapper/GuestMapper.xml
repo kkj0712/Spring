@@ -5,8 +5,41 @@
  
  <mapper namespace="com.guest.mapper.GuestMapper">
  
+ <!-- 검색 -->
+ <sql id="search">
+ 	<where>
+ 		<if test='word!=null and field=="name"'>
+ 			name like '%${word}%'
+ 		</if>
+ 		<if test='word!=null and field=="content"'>
+ 			content like '%'||#{word}||'%'
+ 		</if>
+ 	</where>
+ </sql>
+ 
+ <!-- 전체보기 -->
  <select id="list" resultType="com.guest.vo.GuestVO" parameterType="HashMap">
- 	select * from guestbook
+ 	select * from 
+ 		(select aa.*, rownum rn from
+ 		 (select * from guestbook <include refid="search"/>
+ 		 order by num desc)aa
+ 		 where rownum &lt;=#{endRow})
+ 		 where rn >=#{startRow}
  </select>
+ 
+ <!-- 갯수 -->
+ <select id="count" resultType="int">
+ 	select count(*) from guestbook <include refid="search"/>
+ </select>
+ 
+ <!-- 상세보기 -->
+ <select id="view" resultType="com.guest.vo.GuestVO" parameterType="Integer">
+ 	select * from guestbook where num=#{num}
+ </select>
+ 
+ <!-- 삭제 -->
+ <delete id="delete" parameterType="Integer">
+ 	delete from guestbook where num=#{num}
+ </delete>
  
  </mapper>

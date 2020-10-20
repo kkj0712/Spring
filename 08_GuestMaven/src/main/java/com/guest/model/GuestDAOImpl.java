@@ -23,8 +23,9 @@ public class GuestDAOImpl implements GuestDAO{
 		
 	}
 
+	//삭제
 	public void dao_delete(int num) {
-		
+		mapper.delete(num);
 	}
 
 	//전체보기
@@ -32,12 +33,14 @@ public class GuestDAOImpl implements GuestDAO{
 		return mapper.list(hm);
 	}
 
+	//상세보기
 	public GuestVO dao_findById(int num) {
-		return null;
+		return mapper.view(num);
 	}
-
+	
+	//갯수
 	public int dao_count(HashMap<String, Object> hm) {
-		return 0;
+		return mapper.count(hm);
 	}
 
 }

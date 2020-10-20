@@ -23,8 +23,9 @@ public class GuestServiceImpl implements GuestService {
 		
 	}
 
+	//삭제
 	public void delete(int num) {
-		
+		dao.dao_delete(num);
 	}
 
 	//전체보기
@@ -32,11 +33,13 @@ public class GuestServiceImpl implements GuestService {
 		return dao.dao_list(hm);
 	}
 
+	//상세보기
 	public GuestVO findById(int num) {
-		return null;
+		return dao.dao_findById(num);
 	}
 
+	//개수
 	public int count(HashMap<String, Object> hm) {
-		return 0;
+		return dao.dao_count(hm);
 	}
 }

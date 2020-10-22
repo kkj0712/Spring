@@ -22,19 +22,6 @@ $(function(){
 	})//submit
 });//function
 
-function createHtmlStr(item){
-	return
-	`<tr>
-		<td>${item.num}</td>
-		<td><a href="javascript:fview(${item.num})">${item.name}</a></td>
-		<td>${item.grade}</td>
-		<td>${item.content}</td>
-		<td>${item.created}</td>
-		<td><a href="javascript:fdelete(${item.num},'${item.name}')">삭제</a></td>
-	 </tr>
-	`
-}
-
 function getData(pageNum, field, word){
 	$.get("gList", {"pageNum":pageNum, "field":field, "word":word}, 
 			function(resp){
@@ -51,9 +38,31 @@ function getData(pageNum, field, word){
 				htmlTitle+="<th>작성일</th>";
 				htmlTitle+="<th>삭제</th></tr></thead>";
 				$("#listArea thead").html(htmlTitle); 
-				
+			    
+				//전체보기 내용부분
+				var htmlContent="";
+				$.each(resp.list,function(key,val){
+					htmlContent+=
+					`<tr>
+						<td>${val.num}</td>
+						<td><a href="javascript:fview(${val.num})">${val.name}</a></td>
+						<td>${val.grade}</td>
+						<td>${val.content}</td>
+						<td>${val.created}</td>
+						<td><a href="javascript:fdelete(${val.num},'${val.name}')">삭제</a></td>
+					 </tr>
+					`
+					
+					/*htmlContent+="<tr><td>"+val.num+"</a></td>";
+					htmlContent+="<td><a href=javascript:fview("+val.num+")>"+val.name+"</a></td>";
+					htmlContent+="<td>"+val.grade+"</td>";
+					htmlContent+="<td>"+val.content+"</td>";
+					htmlContent+="<td>"+val.created+"</td>";
+					htmlContent+="<td><a href=javascript:fdelete("+val.num+",'"+val.name+"')>삭제</a></td></tr>";*/
+				});
+				//$("#listArea tbody").html(htmlContent);
 				var container=document.querySelector("#listArea tbody");
-				container.innerHTML=resp.list.map(item=>createHtmlStr(item)).join('').replace(/null/gi,"");
+				container.innerHTML=htmlContent;
 				
 				//페이징내용
 				$("#pageArea").html(resp.pageHtml);

@@ -12,6 +12,7 @@ public class GuestListVO {
 	private String pageHtml;
 	
 	@Builder
+	//이 객체를 만드는 이유?: Controller에서부터 넘겨줘야 할 값이 3개라서 (개수, 내용, 페이징). 이 객체를 한꺼번에 return 시킬려고.
 	public GuestListVO(int count, List<GuestBookDTO> list, String pageHtml) {
 		this.count=count;
 		this.list=list;

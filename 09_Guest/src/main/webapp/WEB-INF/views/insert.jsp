@@ -41,6 +41,8 @@
 	</tr>
 </table>
 </form>
+
+<!-- 검색 영역 -->
 <div align="right">
 <form name="search" id="search">
 	<select name="field" id="field">
@@ -50,12 +52,28 @@
 	<input type="text" name="word" id="word">
 	<input type="button" value="찾기" id="btnSearch">
 </form>
-</div>
+</div> <!-- 검색 영역 끝-->
+
 <hr>
-<!-- 갯수 출력 -->
+
+<!-- 갯수 출력 count-->
 <div id="countArea"></div>
-<!-- 전체보기 결과값 -->
-<div id="listArea"></div>
+
+<!-- 전체보기 결과값 data(list)-->
+<div id="listArea" align="center">
+	<table border="1">
+		<thead></thead>
+		<tbody></tbody>
+	</table>
+</div>
+
+<!-- 상세보기 view -->
+<div id="viewArea" align="center"></div>
+
+<!-- 페이징 영역 paging-->
+<div id="pageArea" align="center">
+
+</div>
 
 </body>
 </html>

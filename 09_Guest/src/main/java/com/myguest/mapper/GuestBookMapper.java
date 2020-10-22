@@ -3,11 +3,14 @@ package com.myguest.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
+
 import com.myguest.model.GuestBookDTO;
 
 public interface GuestBookMapper {
+	@Insert("insert into guestbook values(guestbook_seq.nextval,#{name}, #{content}, #{grade}, sysdate, #{ipaddr})")
 	//추가
-	public void insert(GuestBookDTO gb);
+	public int insert(GuestBookDTO gb);
 	//전체보기
 	public List<GuestBookDTO> list(HashMap<String, Object> hm);
 	//수정

@@ -32,5 +32,14 @@
  	select count(*) from guestbook <include refid="search"/>
  </select>
  
+ <!-- 상세보기 -->
+ <select id="findByNum" resultType="com.myguest.model.GuestBookDTO" parameterType="Integer">
+ 	select * from guestbook where num=#{num}
+ </select>
+ 
+ <!-- 삭제하기 -->
+ <delete id="delete" parameterType="Integer">
+ 	delete from guestbook where num=#{num}
+ </delete>
  
  </mapper>

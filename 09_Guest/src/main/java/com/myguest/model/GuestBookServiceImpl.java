@@ -11,10 +11,9 @@ public class GuestBookServiceImpl implements GuestBookService{
 	@Autowired
 	private GuestBookDAO dao;
 	
-	@Override
+	//추가하기
 	public int guestInsert(GuestBookDTO gb) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.dao_guestInsert(gb);
 	}
 
 	//전체보기
@@ -22,10 +21,9 @@ public class GuestBookServiceImpl implements GuestBookService{
 		return dao.dao_list(hm);
 	}
 
-	@Override
+	//상세보기
 	public GuestBookDTO findByNum(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.dao_findByNum(num);
 	}
 
 	@Override
@@ -34,10 +32,9 @@ public class GuestBookServiceImpl implements GuestBookService{
 		
 	}
 
-	@Override
+	//삭제하기
 	public void deleteGuest(int num) {
-		// TODO Auto-generated method stub
-		
+		dao.dao_deleteGuest(num);
 	}
 
 	//개수

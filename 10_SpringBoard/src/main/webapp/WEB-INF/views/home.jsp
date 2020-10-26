@@ -10,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>SpringBoard</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/board/resources/assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -84,7 +84,7 @@
                         		<div class="flex-shrink-0" ><span class="text-primary" id="countArea"></span></div>
 							<!-- 전체보기 결과값 data(list)-->
 								<div id="listArea" align="center" class="container">
-									<table border="1" class="table table-hover">
+									<table class="table table-hover">
 										<thead></thead>
 										<tbody></tbody>
 									</table>

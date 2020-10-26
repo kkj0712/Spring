@@ -18,4 +18,6 @@ public interface BoardDAO {
 	public void dao_delete(int num);
 	//개수
 	public int dao_count(HashMap<String, Object>hm);
+	//조회수
+	public void dao_updateHitCount(int num);
 }

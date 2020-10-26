@@ -77,8 +77,10 @@ public class HomeController {
 	@ResponseBody
 	public BoardDTO view(int num) {
 		BoardDTO board=service.findByNum(num);
+		service.updateHitCount(num);
 		return board;
 	}
+	
 	
 	@GetMapping("boardDelete")
 	@ResponseBody

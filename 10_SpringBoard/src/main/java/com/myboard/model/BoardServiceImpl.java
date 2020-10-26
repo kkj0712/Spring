@@ -27,6 +27,10 @@ public class BoardServiceImpl implements BoardService{
 	public BoardDTO findByNum(int num) {
 		return dao.dao_findByNum(num);
 	}
+	
+	public void updateHitCount(int num) {
+		dao.dao_updateHitCount(num);
+	}
 
 	@Override
 	public void update(BoardDTO board) {

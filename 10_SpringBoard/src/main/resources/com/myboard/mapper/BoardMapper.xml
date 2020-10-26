@@ -39,6 +39,11 @@
 	select * from springboard where num=#{num}
 </select>
 
+<!-- 조회수 올리기 -->
+<update id="updateHitCount" parameterType="Integer">
+	update springboard set hitcount=hitcount+1 where num=#{num}
+</update>
+
 <!-- 삭제 -->
  <delete id="delete" parameterType="Integer">
  	delete from springboard where num=#{num}

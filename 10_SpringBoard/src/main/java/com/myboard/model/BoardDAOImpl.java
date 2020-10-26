@@ -28,6 +28,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public BoardDTO dao_findByNum(int num) {
 		return mapper.findByNum(num);
 	}
+	
+	public void dao_updateHitCount(int num) {
+		mapper.updateHitCount(num);
+	}
 
 	@Override
 	public void dao_update(BoardDTO board) {

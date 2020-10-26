@@ -18,4 +18,6 @@ public interface BoardService {
 	public void delete(int num);
 	//개수
 	public int count(HashMap<String, Object> hm);
+	//조회수
+	public void updateHitCount(int num);
 }

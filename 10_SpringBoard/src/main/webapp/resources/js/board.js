@@ -114,6 +114,8 @@ function fview(num){
 	$.get("boardView", {"num":num},
 		function(resp){
 			var htmlStr="";
+			resp.hitcount+=1;
+			
 			htmlStr+="<div class='input-group mb-3'><div class='input-group-prepend'><span class='input-group-text'>글쓴이</span>";
 			htmlStr+="</div><input type='text' class='form-control' id='writer' name='writer' readonly='readonly' value=";
 			htmlStr+=resp.writer;
@@ -122,6 +124,11 @@ function fview(num){
 			htmlStr+="<div class='input-group-prepend'><span class='input-group-text'>작성일</span>";
 			htmlStr+="</div><input type='text' class='form-control' id='regdate' name='regdate' value=";
 			htmlStr+=resp.regdate;
+			htmlStr+=">";
+			
+			htmlStr+="<div class='input-group-prepend'><span class='input-group-text'>조회수</span>";
+			htmlStr+="</div><input type='text' class='form-control' id='hitcount' name='hitcount' value=";
+			htmlStr+=resp.hitcount;
 			htmlStr+=">";
 			htmlStr+="</div>";
 			

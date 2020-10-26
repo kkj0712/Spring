@@ -94,6 +94,8 @@
 								
 							<!-- 페이징 영역 paging-->
 								<div id="pageArea" align="center"></div>
+								
+								<hr class="m-0" /><br/>
 							<!-- 검색 영역 -->
 								<div align="center">
 									<form name="search" id="search" >

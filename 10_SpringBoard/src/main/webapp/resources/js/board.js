@@ -83,7 +83,7 @@ function getData(pageNum, field, word){
 	$.get("boardList", {"pageNum":pageNum, "field":field, "word":word}, 
 			function(resp){
 				//개수출력
-				var countStr="<div align='center'>총 게시물 수: "+resp.count+"</div>";
+				var countStr="<div align='left'>총 게시물 수: "+resp.count+"</div>";
 				$("#countArea").html(countStr);
 				
 				//전체보기 제목부분
@@ -114,10 +114,32 @@ function fview(num){
 	$.get("boardView", {"num":num},
 		function(resp){
 			var htmlStr="";
-			htmlStr+=resp.writer+"<br>";
-			htmlStr+=resp.title+"<br>";
-			htmlStr+=resp.content+"<br>";
-			htmlStr+=resp.regdate+"<br>";
+			htmlStr+="<div class='input-group mb-3'><div class='input-group-prepend'><span class='input-group-text'>글쓴이</span>";
+			htmlStr+="</div><input type='text' class='form-control' id='writer' name='writer' readonly='readonly' value=";
+			htmlStr+=resp.writer;
+			htmlStr+=">";
+			
+			htmlStr+="<div class='input-group-prepend'><span class='input-group-text'>작성일</span>";
+			htmlStr+="</div><input type='text' class='form-control' id='regdate' name='regdate' value=";
+			htmlStr+=resp.regdate;
+			htmlStr+=">";
+			htmlStr+="</div>";
+			
+			htmlStr+="<div class='input-group mb-3'><div class='input-group-prepend'><span class='input-group-text'>제목</span>";
+			htmlStr+="</div><input type='text' class='form-control' id='title' name='title' value=";
+			htmlStr+=resp.title;
+			htmlStr+="></div>";
+			
+			htmlStr+="<div class='input-group mb-3'><div class='input-group-prepend'><span class='input-group-text'>내용</span>";
+			htmlStr+="</div><textarea rows='5' cols='40' class='form-control' id='content' name='content'>";
+			htmlStr+=resp.content;
+			htmlStr+="</textarea></div>";
+			
+			htmlStr+="<div class='input-group mb-3'><div class='input-group-prepend'><span class='input-group-text'>비밀번호</span>";
+			htmlStr+="</div><input type='password' class='form-control' id='password' name='password' value=";
+			htmlStr+=resp.password;
+			htmlStr+="></div>";
+			
 			$("#viewArea").html(htmlStr);
 		})
 }

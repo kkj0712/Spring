@@ -22,9 +22,9 @@ $(function(){
 	})//submit
 });//function
 
+//템플릿 return 뒤에 써야지 하나의 문자열로 인식. 
 function createHtmlStr(item){
-	return
-	`<tr>
+	return `<tr>
 		<td>${item.num}</td>
 		<td><a href="javascript:fview(${item.num})">${item.name}</a></td>
 		<td>${item.grade}</td>
@@ -52,6 +52,7 @@ function getData(pageNum, field, word){
 				htmlTitle+="<th>삭제</th></tr></thead>";
 				$("#listArea thead").html(htmlTitle); 
 				
+				//내용부분
 				var container=document.querySelector("#listArea tbody");
 				container.innerHTML=resp.list.map(item=>createHtmlStr(item)).join('').replace(/null/gi,"");
 				

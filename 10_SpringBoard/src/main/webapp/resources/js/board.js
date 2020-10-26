@@ -102,6 +102,9 @@ function getData(pageNum, field, word){
 				
 				//페이징내용
 				$("#pageArea").html(resp.pageHtml);
+				
+				//상세보기 부분 clear
+				$("#viewArea").html("");
 		} //callback
 	) //get
 } //function

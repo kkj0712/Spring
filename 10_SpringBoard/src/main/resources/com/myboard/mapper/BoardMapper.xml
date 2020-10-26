@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.myboard.mapper.BoardMapper">
+ 
+  <!-- 검색 -->
+ <sql id="search">
+ 	<where>
+ 		<if test='word!=null and field=="writer"'>
+ 			writer like '%${word}%'
+ 		</if>
+		<if test='word!=null and field=="title"'>
+ 			title like '%${word}%'
+ 		</if>
+ 	</where>
+ </sql>
+ 
+ 
+ <!-- 전체보기 -->
+ <select id="findAll" resultType="com.myboard.dto.BoardDTO" parameterType="HashMap">
+ 	select * from
+      (select aa.*, rownum rn from
+		(select * from springboard <include refid="search"/>
+		order by num desc)aa
+		where rownum &lt;=#{endRow})
+		where rn>=#{startRow}
+ </select>
+
+ 
+ <!-- 개수 -->
+ <select id="count" resultType="int">
+ 	select count(*) from springboard <include refid="search"/>
+ </select>
+
+<!-- 상세보기 -->
+<select id="findByNum" resultType="com.myboard.dto.BoardDTO" parameterType="Integer">
+	select * from springboard where num=#{num}
+</select>
+
+<!-- 삭제 -->
+ <delete id="delete" parameterType="Integer">
+ 	delete from springboard where num=#{num}
+ </delete>
+ </mapper>

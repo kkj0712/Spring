@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="/board/resources/board.js"></script>
+<script src="/board/resources/js/board.js"></script>
 </head>
 <body>
 <h2>글작성</h2>

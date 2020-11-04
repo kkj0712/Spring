@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.myspring.mapper.CommentMapper"><!--매퍼의 패키지 주소 작성 -->
+ 
+ 	<select id="getList" resultType="com.myspring.dto.CommentDTO">
+ 		select * from commentspringboard where bnum=#{bnum} order by cnum desc
+ 	</select>
+ 
+ 	<insert id="insert" parameterType="com.myspring.dto.CommentDTO">
+ 		insert into commentspringboard values(COMMENTSPRINGBOARD_SEQ.nextval, #{userid}, #{content}, sysdate, #{bnum})
+ 	</insert>
+ 	
+ 	<select id="read" resultType="com.myspring.dto.CommentDTO">
+ 		select * from commentspringboard where cnum=#{cnum}
+ 	</select>
+ </mapper>

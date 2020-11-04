@@ -17,29 +17,34 @@ import lombok.extern.log4j.Log4j;
 
 //@Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
+	//PasswordEncoder는 인터페이스 객체. 비밀번호 암호화 시킴
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication auth) throws IOException, ServletException {
-		String encPwd=passwordEncoder.encode(request.getParameter("password"));
-		System.out.println("password: "+encPwd);
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
+		//암호화된 비밀번호
+		String encPwd = passwordEncoder.encode(request.getParameter("password"));
+		System.out.println("password: " + encPwd);
 		
-		List<String> roleNames=new ArrayList<>();
-		auth.getAuthorities().forEach(authority->{
+		//권한 가져와
+		List<String> roleNames = new ArrayList<>();
+		auth.getAuthorities().forEach(authority ->{
 			roleNames.add(authority.getAuthority());
 		});
-		System.out.println("roleNames: "+roleNames);
+		System.out.println("roleNames :" + roleNames);
 		
+		//권한에 ROLE_ADMIN이 포함되어 있으면 admin 페이지로 가라
 		if(roleNames.contains("ROLE_ADMIN")) {
-			response.sendRedirect("/security/sample/admin");
+			response.sendRedirect("/security11/sample/admin");
 			return;
 		}
+		//권한에 ROLE_MEMBER가 포함되어 있으면 member 페이지로 가라
 		if(roleNames.contains("ROLE_MEMBER")) {
-			response.sendRedirect("/security/sample/member");
+			response.sendRedirect("/security11/sample/member");
 			return;
 		}
-		response.sendRedirect("/security");
+		//둘다 아니면 security11 페이지로 가라
+		response.sendRedirect("/security11");
 	}
 }

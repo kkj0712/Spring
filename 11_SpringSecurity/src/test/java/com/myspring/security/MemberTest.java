@@ -2,6 +2,7 @@ package com.myspring.security;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
@@ -22,69 +23,91 @@ import lombok.extern.log4j.Log4j;
 })
 @Log4j
 public class MemberTest {
+	 // @Setter(onMethod_ = @Autowired)
 	@Autowired
-	//@Setter(onMethod_=@Autowired)
-	private PasswordEncoder pwencoder;
-	
-	@Setter(onMethod_=@Autowired)
-	private DataSource ds;
-	
+	  private PasswordEncoder pwencoder;
+	  
+	 // @Setter(onMethod_ = @Autowired)
+	@Autowired
+	  private DataSource ds;
 	@Test
 	public void testInsertMember() {
-		String sql="insert into tbl_member(userid, userpw, username) values(?,?,?)";
+		String sql = "insert into tbl_member(userid, userpw, username) "
+				+ " values (?,?,?)";
 		for(int i=0;i<100;i++) {
-			Connection con=null;
-			PreparedStatement ps=null;
-			try {
-				con=ds.getConnection();
-				ps=con.prepareStatement(sql);
-				ps.setString(2, pwencoder.encode("pw"+i)); //패스워드는 암호화 거쳐서 넣겠다.
-				if(i<80) { //userid0~79까지는 일반사용자
-					ps.setString(1, "user"+i);
-					ps.setString(3, "일반사용자"+i);
-				}else if(i<90) { //manager80~89까지는 운영자
-					ps.setString(1, "manager"+i);
-					ps.setString(3, "운영자"+i);
-				}else { //admin90~99까지는 관리자
-					ps.setString(1, "admin"+i);
-					ps.setString(3, "관리자"+i);
-				}
-				ps.executeUpdate();
-			} catch (Exception e) {
+		      Connection con = null;
+		      PreparedStatement ps = null;
+		      
+		      try {
+				con = ds.getConnection();
+				ps = con.prepareStatement(sql);
+				
+		        ps.setString(2, pwencoder.encode("pw" + i));
+		        if(i<80) {
+		            ps.setString(1, "user"+i);
+		            ps.setString(3,"일반사용자"+i);
+		        }else if(i<90) {
+		        	ps.setString(1, "manager"+i);
+		        	ps.setString(3,"운영자"+i);
+
+		        }else {
+		            ps.setString(1, "admin"+i);
+		            ps.setString(3,"관리자"+i);
+
+		        }
+		         ps.executeUpdate();
+			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				if(ps!=null) {try {ps.close();} catch (Exception e) {}}
-				if(con!=null) {try {con.close();} catch (Exception e) {}}
-			}
-		}//end for
-	}//testInsertMember
+			}finally {
+		        if(ps != null) { try { ps.close();  } catch(Exception e) {} }
+		        if(con != null) { try { con.close();  } catch(Exception e) {} }
+		        
+		   }
+		}
+	}
+     
+	       @Test
+	       public void testInsertAuth() {
+	          String sql = "insert into tbl_member_auth (userid, auth) values (?,?)";
+	        
+	          for(int i = 0; i < 100; i++) {
+	           
+	           Connection con = null;
+	           PreparedStatement ps = null;
+	           
+	           try {
+	             con = ds.getConnection();
+	             ps = con.prepareStatement(sql);
+	                
+	             if(i <80) {
+	            	 ps.setString(1, "user"+i);
+	            	 ps.setString(2,"ROLE_USER");
+	               
+	             }else if (i <90) {
+	            	 ps.setString(1, "manager"+i);
+	            	 ps.setString(2,"ROLE_MEMBER");
+	              }else {
+	            	  ps.setString(1, "admin"+i);
+	            	  ps.setString(2,"ROLE_ADMIN");
+	              }
+	              ps.executeUpdate();
+	            }catch(Exception e) {
+	             e.printStackTrace();
+	           }finally {
+	             if(ps != null) { try { ps.close();  } catch(Exception e) {} }
+	             if(con != null) { try { con.close();  } catch(Exception e) {} }
+	             
+	           }
+	         }//end for
+	   
 	
-	@Test
-	public void testInsertAuth() {
-		String sql="insert into tbl_member_auth (userid, auth) values(?,?)";
-		for(int i=0;i<100;i++) {
-			Connection con=null;
-			PreparedStatement ps=null;
-			try {
-				con=ds.getConnection();
-				ps=con.prepareStatement(sql);
-				if(i<80) { //userid0~79까지 권한은 ROLE_USER
-					ps.setString(1, "user"+i);
-					ps.setString(2, "ROLE_USER");
-				}else if(i<90) { //manager80~89까지 권한은 ROLE_MEMBER
-					ps.setString(1, "manager"+i);
-					ps.setString(2, "ROLE_MEMBER");
-				}else {	//admin90~99까지 권한은 ROLE_ADMIN
-					ps.setString(1, "admin"+i);
-					ps.setString(2, "ROLE_ADMIN");
-				}
-				ps.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if(ps!=null) {try {ps.close();} catch (Exception e) {}}
-				if(con!=null) {try {con.close();} catch (Exception e) {}}
-			}
-		}//end for
-	}//testInsertAuth
+
+	}
 }
+
+
+
+
+
+
+

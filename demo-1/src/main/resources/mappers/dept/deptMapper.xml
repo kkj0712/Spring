@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo1.dao.DeptDAO">
+
+<!-- properties에서 vo location을 명시했으니 DeptVO만 적어도 알아서 찾는다. -->
+<select id="list" resultType="DeptVO">
+	select * from dept
+</select>
+
+</mapper>

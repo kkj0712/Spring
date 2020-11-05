@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,5 @@
 </head>
 <body>
 home<br>
-<a href="mInsert">추가</a>
-
 </body>
 </html>

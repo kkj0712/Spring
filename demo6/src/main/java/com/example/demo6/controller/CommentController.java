@@ -34,6 +34,7 @@ public class CommentController {
 	
 	//댓글쓰기
 	@PostMapping("cInsert")
+	//StarterComment가 아닌, CommentDTO를 받는다.
 	public String comInsert(@RequestBody CommentDTO comment) {
 		cservice.com_Insert(comment);
 		return "success";

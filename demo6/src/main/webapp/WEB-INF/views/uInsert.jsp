@@ -16,6 +16,7 @@
     <label for="userid">아이디:</label>
     <input type="text" id="userid" name ="userid" class="form-control">
     <input type="button" id="idCheckBtn" name ="idCheckBtn" value="중복확인" class="btn btn-outline-info">
+    <span id="idcheck"></span>
   </div>
   
   <div class="form-group">

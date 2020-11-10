@@ -35,6 +35,14 @@ public class HomeController {
 		return "uInsert";
 	}
 	
+	//아이디중복확인
+	@GetMapping("idCheck")
+	@ResponseBody
+	public String idcheck(String userid) {
+		String idCountStr=uservice.id_Check(userid);
+		return idCountStr;
+	}
+	
 	//회원가입
 	@PostMapping("insert")
 	public String insert(StarterUser user) {

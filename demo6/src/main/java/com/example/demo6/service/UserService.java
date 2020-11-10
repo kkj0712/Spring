@@ -23,6 +23,15 @@ public class UserService {
 	}
 	
 	@Transactional
+	public String id_Check(String userid) {
+		if(userRepository.findByUserid(userid)==0) {
+			return "YES";
+		}else {
+			return "NO";
+		}
+	}
+	
+	@Transactional
 	public Page<StarterUser> list(Pageable pageable) {
 		return userRepository.findAll(pageable);
 	}

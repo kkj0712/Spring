@@ -55,6 +55,29 @@ let user={
 		.fail(function(error){
 			alert(error+"error");
 		})
-	}//delete
+	}, //delete
+	
+	idCheck:function(){
+		$("#idcheck").html("");
+		
+		$.ajax({
+			type:"get",
+			url:"/idCheck",
+			data:{userid:$("#userid").val()},
+		})
+		.done(function(resp){
+			if(resp.trim()=="YES"){
+				$("#idcheck").html("사용가능한 아이디");
+			}else{
+				$("#idcheck").html("사용 불가능한 아이디");
+				$("#userid").focus();
+				$("#userid").val("");
+			}
+		})
+		.fail(function(error){
+			alert("조회실패");
+		})
+	}
+	
 }//user
 user.init();

@@ -7,18 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method='post' action="/security11/login">
-    <div>
-    <input type='text' name='username'>
-  </div>
-  <div>
-    <input type='password' name='password' >
-  </div>
-  <div>
-	<input name="remember-me" type="checkbox"> Remember Me  
-  </div>
-    <input type='submit'>
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-    </form>
+<form method='post' action="/security/login">
+	<div>
+		<input type='text' name='username'>
+	</div>
+	<div>
+		<input type='password' name='passwsord'>
+	</div>
+	<div>
+		<input type='submit'> 
+	</div>
+	<%-- 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
+</form>
 </body>
 </html>

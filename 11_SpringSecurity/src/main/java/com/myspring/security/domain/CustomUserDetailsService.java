@@ -11,12 +11,14 @@ import com.myspring.mapper.MemberMapper;
 public class CustomUserDetailsService implements UserDetailsService{
 	@Autowired
 	private MemberMapper memberMapper;
-
-	//loadUserByUsername 메소드 실행하면서 스프링 방식대로 권한을 가져옴. 
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		MemberDTO member = memberMapper.read(username);
-		//객체가 있으면 CustomUser 형으로 바꾼다.
-		return member==null?null : new CustomUser(member);
+		MemberDTO member=memberMapper.read(username);
+		CustomUser cu=new CustomUser(member);
+		System.out.println(cu);
+		
+		return member==null? null:cu; //spring이 인정해주는 애를 내가 만든 애로 바꿈.
 	}
+
 }

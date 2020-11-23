@@ -16,8 +16,4 @@ public class SampleCont {
 		
 	}
 	
-	@GetMapping("all")
-	public void all() {
-		
-	}
 }

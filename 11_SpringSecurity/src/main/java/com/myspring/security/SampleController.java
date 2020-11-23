@@ -9,14 +9,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Controller
 public class SampleController {
+	@GetMapping("/customLogin")
+	public void loginInput() {
+		log.info("customLogin");
+	}
 	
-    @GetMapping("/customLogin")
-    public void loginInput() {
- 	    log.info("customLogin");
-    }
-    
-    @GetMapping("/customLogout")
-    public void logout() {
- 	    log.info("customLogout");
-    }
+	@GetMapping("/customLogout")
+	public void logout() {
+	 	log.info("customLogout");
+	}	
 }

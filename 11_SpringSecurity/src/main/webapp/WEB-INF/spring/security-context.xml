@@ -5,34 +5,34 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
  
- 	<!-- CustomLoginSuccessHandler 이름을 customLoginSuccess로 정하겠다.-->
-	<bean id="customLoginSuccess" class="com.myspring.security.domain.CustomLoginSuccessHandler"/>
+   <bean id="customLoginSuccess" 
+   class="com.myspring.security.domain.CustomLoginSuccessHandler"/>
+   
+	<bean id="bcryptPasswordEncoder" 
+	class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">	
+	</bean>
 	
-	<!-- 비밀번호 암호화를 위한 bean 객체 -->
-	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
-	
-	<!-- 내가 만든 구현체. 밑에 manager, provider에서 참조함 -->
-	<bean id="customUserDetailsService" class="com.myspring.security.domain.CustomUserDetailsService"/>
+	<bean id="customUserDetailsService"
+	 class="com.myspring.security.domain.CustomUserDetailsService"/>
 	
 	<security:http>
-	  <security:intercept-url  pattern="/sample/all"  access="permitAll"/>
-	  <security:intercept-url  pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
-	  <security:intercept-url  pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" /> 	    
+	    <security:intercept-url  pattern="/sample/all"  access="permitAll"/>
+	    <security:intercept-url  pattern="/sample/member"  
+	    	    access="hasRole('ROLE_MEMBER')" />
+	     <security:intercept-url  pattern="/sample/admin"  
+	    	    access="hasRole('ROLE_ADMIN')" /> 	    
 	   
-	  <!-- <security:form-login  login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/> -->
-	  <!-- <security:csrf disabled="true"/> -->  
-	  <security:form-login  login-page="/customLogin"/>
-	  <security:logout  logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me, JSESSION_ID"/>
-	  
-	  <!-- 604800초가 지나면 세션 없어짐 -->
-	  <security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
+	  <security:form-login  login-page="/customLogin" 
+	     authentication-success-handler-ref="customLoginSuccess"/>
+	      <security:csrf disabled="true"/>  
+	      
+	  <security:logout  logout-url="/customLogout" invalidate-session="true"/>
 	</security:http>
 	
-	<!-- provider인 customUserDetailsService를 거쳐야함. 반드시 암호화 해야하므로 bcryptPasswordEncoder를 참조하겠다. -->
-	<!-- id와 pw 비교하고 customUserDetailsService로 감. -->
 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="customUserDetailsService">
-			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		<security:authentication-provider 
+		     user-service-ref="customUserDetailsService">
+		<security:password-encoder ref="bcryptPasswordEncoder"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>

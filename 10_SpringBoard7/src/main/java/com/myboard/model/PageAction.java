@@ -9,11 +9,14 @@ public class PageAction {
 	public String paging(int count, int pageSize, int currentPage, String field, String word) {
 		
 		String file="javascript:getData(";
-		int pageCount = count/pageSize+(count%pageSize==0?0:1);
-		int pageBlock = 3;//이전과 다음 사이의 페이지 갯수
-		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-		int endPage = startPage+pageBlock-1;
-		if(endPage>pageCount) endPage=pageCount;
+		int pageCount = count/pageSize+(count%pageSize==0?0:1); //총 페이지수
+		int pageBlock = 3;	//3페이씩 블럭에 담음
+		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1; //블럭당 시작 변수
+		int endPage = startPage+pageBlock-1; //블럭당 마지막 변수
+		if(endPage>pageCount) endPage=pageCount; 
+		//총 게시물 10개. 한 페이지당 3개씩 보여준다. 총 페이지수는?: 4페이지
+		//1, 2, 3, 4 페이지가 있을 것임. 페이지 블락이 3이므로 << 1 2 3 >> 그리고 << 4 >> 이렇게 있겠지
+		//마지막 페이지
 		
 		StringBuilder sb = new StringBuilder();
 		if(count>0) {

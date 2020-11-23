@@ -4,7 +4,7 @@
 <%@ include file="/resources/include.jsp" %>
 <body>
 <div class="container">
-  <h2>작성 리스트</h2>  
+  <h3>작성 리스트</h3>  
  <div id="resultCount"><p>게시글수:${count } </p></div>   
   <table class="table table-striped">
     <thead>
@@ -23,7 +23,7 @@
       <tr>
         <td>${list.num }</td>
         <td><a href="view?num=${list.num}">${list.writer }</a></td>
-        <td>${list.title }[<c:out value="${list.replycnt }"/>]</td>
+        <td>${list.title }[<c:out value="${list.replycnt}"/>]</td>
         <td>${list.content }</td>
         <td>${list.regdate }</td>
         <td>${list.hitcount }</td>

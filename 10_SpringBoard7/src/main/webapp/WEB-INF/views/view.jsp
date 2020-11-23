@@ -67,8 +67,6 @@
 				htmlStr+="<td>"+value.regdate+"</td>";
 				htmlStr+="<td><a href='javascript:fdel("+value.cnum+")'>삭제</a></td>";
 				htmlStr+="</tr>";		
-
-
 		  /*
 			$.each(resp, function(key, val){	
 				htmlCont+=val.content+"<br>"
@@ -77,18 +75,14 @@
 				htmlCont+="</div>"
 			})
     	  */
-						
-				
 			})
 			$("#area").html(htmlStr);
-
 			/*
 			$("#area").on("click", "a", function(e){
 				var cnum=$(this).data("cnum");
 				alert(cnum);
 			})
 			*/
-
 		})
 		.fail(function(error){
 			alert("실패");

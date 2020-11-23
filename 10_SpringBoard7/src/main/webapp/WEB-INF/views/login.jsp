@@ -23,7 +23,7 @@
   $("#btnLogin").click(function(){
 		$.ajax({
 			type:"post",
-			url:"login",
+			url:"/board7/member/login",
 			data:{"id":$("#id").val(), "pass":$("#pass").val()},			
 		})
 		.done(function(resp){
